@@ -1,0 +1,54 @@
+{
+  "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/",
+  "items" : [
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgepalsv023.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgepalsv023.mis.priv"
+      }
+    },
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgeppldn001.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgeppldn001.mis.priv"
+      }
+    },
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgeppldn002.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgeppldn002.mis.priv"
+      }
+    },
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgeppldn003.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgeppldn003.mis.priv"
+      }
+    },
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgeppldn004.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgeppldn004.mis.priv"
+      }
+    },
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgepplnn001.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgepplnn001.mis.priv"
+      }
+    },
+    {
+      "href" : "https://10.17.7.168/api/v1/clusters/miscluster/hosts/lcsgepplnn002.mis.priv",
+      "Hosts" : {
+        "cluster_name" : "miscluster",
+        "host_name" : "lcsgepplnn002.mis.priv"
+      }
+    }
+  ]
+}

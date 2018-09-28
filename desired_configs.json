@@ -1,0 +1,461 @@
+{
+  "href" : "https://10.17.7.168/api/v1/clusters/miscluster?fields=Clusters/desired_configs",
+  "Clusters" : {
+    "cluster_name" : "miscluster",
+    "version" : "HDP-2.6",
+    "desired_configs" : {
+      "admin-log4j" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "admin-properties" : {
+        "tag" : "version1532609111398",
+        "version" : 4
+      },
+      "ams-env" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-grafana-env" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-grafana-ini" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-hbase-env" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-hbase-log4j" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-hbase-policy" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-hbase-security-site" : {
+        "tag" : "version1531743398535",
+        "version" : 2
+      },
+      "ams-hbase-site" : {
+        "tag" : "version1531743398255",
+        "version" : 2
+      },
+      "ams-log4j" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-logsearch-conf" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-site" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-ssl-client" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ams-ssl-server" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "atlas-tagsync-ssl" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "beeline-log4j2" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "capacity-scheduler" : {
+        "tag" : "version1536342720170",
+        "version" : 7
+      },
+      "cluster-env" : {
+        "tag" : "version1531743398599",
+        "version" : 2
+      },
+      "core-site" : {
+        "tag" : "version1532958750942",
+        "version" : 25
+      },
+      "dbks-site" : {
+        "tag" : "version1532685843889",
+        "version" : 11
+      },
+      "hadoop-env" : {
+        "tag" : "version1534952313917",
+        "version" : 4
+      },
+      "hadoop-metrics2.properties" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "hadoop-policy" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "hcat-env" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hdfs-log4j" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "hdfs-logsearch-conf" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "hdfs-site" : {
+        "tag" : "version1532685852339",
+        "version" : 27
+      },
+      "hive-atlas-application.properties" : {
+        "tag" : "version1531743398519",
+        "version" : 2
+      },
+      "hive-env" : {
+        "tag" : "version1532611009128",
+        "version" : 6
+      },
+      "hive-exec-log4j" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hive-exec-log4j2" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hive-interactive-env" : {
+        "tag" : "version1536342187700",
+        "version" : 7
+      },
+      "hive-interactive-site" : {
+        "tag" : "version1536341465882",
+        "version" : 7
+      },
+      "hive-log4j" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hive-log4j2" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hive-logsearch-conf" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hive-site" : {
+        "tag" : "version1536342720177",
+        "version" : 9
+      },
+      "hivemetastore-site" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hiveserver2-interactive-site" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "hiveserver2-site" : {
+        "tag" : "version1532611009127",
+        "version" : 7
+      },
+      "infra-logsearch-conf" : {
+        "tag" : "version1531240559792",
+        "version" : 1
+      },
+      "infra-solr-client-log4j" : {
+        "tag" : "version1531240559792",
+        "version" : 1
+      },
+      "infra-solr-env" : {
+        "tag" : "version1531743398648",
+        "version" : 2
+      },
+      "infra-solr-log4j" : {
+        "tag" : "version1531240559792",
+        "version" : 1
+      },
+      "infra-solr-security-json" : {
+        "tag" : "version1531240559792",
+        "version" : 1
+      },
+      "infra-solr-xml" : {
+        "tag" : "version1531240559792",
+        "version" : 1
+      },
+      "kerberos-env" : {
+        "tag" : "version1532956921257",
+        "version" : 3
+      },
+      "kms-env" : {
+        "tag" : "version1532685852353",
+        "version" : 7
+      },
+      "kms-log4j" : {
+        "tag" : "version1532685852353",
+        "version" : 6
+      },
+      "kms-properties" : {
+        "tag" : "version1532685852353",
+        "version" : 11
+      },
+      "kms-site" : {
+        "tag" : "version1532685843857",
+        "version" : 12
+      },
+      "krb5-conf" : {
+        "tag" : "version1532956921258",
+        "version" : 3
+      },
+      "llap-cli-log4j2" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "llap-daemon-log4j" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "mapred-env" : {
+        "tag" : "version1531384096012",
+        "version" : 1
+      },
+      "mapred-logsearch-conf" : {
+        "tag" : "version1531384096012",
+        "version" : 1
+      },
+      "mapred-site" : {
+        "tag" : "version1531743398293",
+        "version" : 2
+      },
+      "parquet-logging" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "pig-env" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "pig-log4j" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "pig-properties" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "ranger-admin-site" : {
+        "tag" : "version1536673156647",
+        "version" : 19
+      },
+      "ranger-env" : {
+        "tag" : "version1532611009074",
+        "version" : 14
+      },
+      "ranger-hdfs-audit" : {
+        "tag" : "version1532607157291",
+        "version" : 5
+      },
+      "ranger-hdfs-plugin-properties" : {
+        "tag" : "version1532611009081",
+        "version" : 10
+      },
+      "ranger-hdfs-policymgr-ssl" : {
+        "tag" : "version1531238502769",
+        "version" : 2
+      },
+      "ranger-hdfs-security" : {
+        "tag" : "version1532607157289",
+        "version" : 4
+      },
+      "ranger-hive-audit" : {
+        "tag" : "version1532607157296",
+        "version" : 4
+      },
+      "ranger-hive-plugin-properties" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "ranger-hive-policymgr-ssl" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "ranger-hive-security" : {
+        "tag" : "version1532607157295",
+        "version" : 3
+      },
+      "ranger-kms-audit" : {
+        "tag" : "version1532685843874",
+        "version" : 11
+      },
+      "ranger-kms-logsearch-conf" : {
+        "tag" : "version1532685852353",
+        "version" : 6
+      },
+      "ranger-kms-policymgr-ssl" : {
+        "tag" : "version1532685852353",
+        "version" : 6
+      },
+      "ranger-kms-security" : {
+        "tag" : "version1532685852353",
+        "version" : 7
+      },
+      "ranger-kms-site" : {
+        "tag" : "version1532685852353",
+        "version" : 10
+      },
+      "ranger-logsearch-conf" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "ranger-site" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "ranger-solr-configuration" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "ranger-tagsync-policymgr-ssl" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "ranger-tagsync-site" : {
+        "tag" : "version1532609106663",
+        "version" : 5
+      },
+      "ranger-ugsync-site" : {
+        "tag" : "version1532679774662",
+        "version" : 18
+      },
+      "ranger-yarn-audit" : {
+        "tag" : "version1532607157294",
+        "version" : 4
+      },
+      "ranger-yarn-plugin-properties" : {
+        "tag" : "version1532611009144",
+        "version" : 6
+      },
+      "ranger-yarn-policymgr-ssl" : {
+        "tag" : "version1531384096012",
+        "version" : 1
+      },
+      "ranger-yarn-security" : {
+        "tag" : "version1532607157293",
+        "version" : 3
+      },
+      "slider-client" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "slider-env" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "slider-log4j" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "sqoop-atlas-application.properties" : {
+        "tag" : "version1531497400693",
+        "version" : 1
+      },
+      "sqoop-env" : {
+        "tag" : "version1531497400693",
+        "version" : 1
+      },
+      "sqoop-site" : {
+        "tag" : "version1531497400693",
+        "version" : 1
+      },
+      "ssl-client" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "ssl-server" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "tagsync-application-properties" : {
+        "tag" : "version1532609106630",
+        "version" : 5
+      },
+      "tagsync-log4j" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "tez-env" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "tez-interactive-site" : {
+        "tag" : "version1531905493347",
+        "version" : 2
+      },
+      "tez-site" : {
+        "tag" : "version1532690879566",
+        "version" : 4
+      },
+      "usersync-log4j" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "usersync-properties" : {
+        "tag" : "version1532609111398",
+        "version" : 3
+      },
+      "webhcat-env" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "webhcat-log4j" : {
+        "tag" : "version1531386711831",
+        "version" : 1
+      },
+      "webhcat-site" : {
+        "tag" : "version1531743398454",
+        "version" : 2
+      },
+      "yarn-env" : {
+        "tag" : "version1532692508751",
+        "version" : 2
+      },
+      "yarn-log4j" : {
+        "tag" : "version1531384096012",
+        "version" : 1
+      },
+      "yarn-logsearch-conf" : {
+        "tag" : "version1531384096012",
+        "version" : 1
+      },
+      "yarn-site" : {
+        "tag" : "version1532611009141",
+        "version" : 10
+      },
+      "zoo.cfg" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "zookeeper-env" : {
+        "tag" : "version1531743398583",
+        "version" : 2
+      },
+      "zookeeper-log4j" : {
+        "tag" : "version1",
+        "version" : 1
+      },
+      "zookeeper-logsearch-conf" : {
+        "tag" : "version1",
+        "version" : 1
+      }
+    }
+  }
+}

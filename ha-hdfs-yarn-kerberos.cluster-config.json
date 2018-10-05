@@ -1,0 +1,399 @@
+{
+    "configurations": [
+        {
+            "kerberos-env": {
+                "properties": {
+                    "ad_create_attributes_template": "\n{\n  \"objectClass\": [\"top\", \"person\", \"organizationalPerson\", \"user\"],\n  \"cn\": \"$principal_name\",\n  #if( $is_service )\n  \"servicePrincipalName\": \"$principal_name\",\n  #end\n  \"userPrincipalName\": \"$normalized_principal\",\n  \"unicodePwd\": \"$password\",\n  \"accountExpires\": \"0\",\n  \"userAccountControl\": \"66048\"\n}",
+                    "admin_server_host": "lcsgepawdc010.mis.priv",
+                    "case_insensitive_username_rules": "false",
+                    "container_dn": "OU=ServiceAccounts,OU=HadoopTest,DC=mis,DC=priv",
+                    "create_ambari_principal": "true",
+                    "encryption_types": "aes des3-cbc-sha1 rc4 des-cbc-md5",
+                    "executable_search_paths": "/usr/bin, /usr/kerberos/bin, /usr/sbin, /usr/lib/mit/bin, /usr/lib/mit/sbin",
+                    "group": "ambari-managed-principals",
+                    "install_packages": "true",
+                    "kdc_create_attributes": "",
+                    "kdc_hosts": "lcsgepawdc010.mis.priv,lcsgepawdc011.mis.priv",
+                    "kdc_type": "active-directory",
+                    "ldap_url": "ldaps://lcsgepawdc010.mis.priv:636",
+                    "manage_auth_to_local": "true",
+                    "manage_identities": "true",
+                    "master_kdc": "",
+                    "password_chat_timeout": "5",
+                    "password_length": "20",
+                    "password_min_digits": "1",
+                    "password_min_lowercase_letters": "1",
+                    "password_min_punctuation": "1",
+                    "password_min_uppercase_letters": "1",
+                    "password_min_whitespace": "0",
+                    "preconfigure_services": "DEFAULT",
+                    "realm": "MIS.PRIV",
+                    "service_check_principal_name": "${cluster_name|toLower()}-${short_date}",
+                    "set_password_expiry": "false"
+                }
+            }
+        },
+        {
+            "krb5-conf": {
+                "properties": {
+                    "conf_dir": "/etc",
+                    "content": "{#\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#}\n[libdefaults]\n  renew_lifetime = 7d\n  forwardable = true\n  default_realm = {{realm}}\n  ticket_lifetime = 24h\n  dns_lookup_realm = false\n  dns_lookup_kdc = false\n  default_ccache_name = /tmp/krb5cc_%{uid}\n  #default_tgs_enctypes = {{encryption_types}}\n  #default_tkt_enctypes = {{encryption_types}}\n{% if domains %}\n[domain_realm]\n{%- for domain in domains.split(',') %}\n  {{domain|trim()}} = {{realm}}\n{%- endfor %}\n{% endif %}\n[logging]\n  default = FILE:/var/log/krb5kdc.log\n  admin_server = FILE:/var/log/kadmind.log\n  kdc = FILE:/var/log/krb5kdc.log\n\n[realms]\n  {{realm}} = {\n{%- if master_kdc %}\n    master_kdc = {{master_kdc|trim()}}\n{%- endif -%}\n{%- if kdc_hosts > 0 -%}\n{%- set kdc_host_list = kdc_hosts.split(',')  -%}\n{%- if kdc_host_list and kdc_host_list|length > 0 %}\n    admin_server = {{admin_server_host|default(kdc_host_list[0]|trim(), True)}}\n{%- if kdc_host_list -%}\n{%- if master_kdc and (master_kdc not in kdc_host_list) %}\n    kdc = {{master_kdc|trim()}}\n{%- endif -%}\n{% for kdc_host in kdc_host_list %}\n    kdc = {{kdc_host|trim()}}\n{%- endfor -%}\n{% endif %}\n{%- endif %}\n{%- endif %}\n  }\n\n{# Append additional realm declarations below #}",
+                    "domains": ".mis.priv,mis.priv,.ocr.priv,ocr.priv",
+                    "manage_krb5_conf": "true"
+                }
+            }
+        },
+        {
+            "core-site": {
+                "properties": {
+                    "fs.defaultFS": "hdfs://misdev",
+                    "ha.zookeeper.quorum": "%HOSTGROUP::data01%:2181,%HOSTGROUP::data02%:2181,%HOSTGROUP::data03%:2181"
+                }
+            }
+        },
+        {
+            "hdfs-site": {
+                "properties": {
+                    "dfs.client.failover.proxy.provider.misdev": "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider",
+                    "dfs.ha.automatic-failover.enabled": "true",
+                    "dfs.ha.fencing.methods": "shell(/bin/true)",
+                    "dfs.ha.namenodes.misdev": "nn1,nn2",
+                    "dfs.namenode.http-address": "%HOSTGROUP::master01%:50070",
+                    "dfs.namenode.http-address.misdev.nn1": "%HOSTGROUP::master01%:50070",
+                    "dfs.namenode.http-address.misdev.nn2": "%HOSTGROUP::master02%:50070",
+                    "dfs.namenode.https-address": "%HOSTGROUP::master01%:50470",
+                    "dfs.namenode.https-address.misdev.nn1": "%HOSTGROUP::master01%:50470",
+                    "dfs.namenode.https-address.misdev.nn2": "%HOSTGROUP::master02%:50470",
+                    "dfs.namenode.rpc-address.misdev.nn1": "%HOSTGROUP::master01%:8020",
+                    "dfs.namenode.rpc-address.misdev.nn2": "%HOSTGROUP::master02%:8020",
+                    "dfs.namenode.shared.edits.dir": "qjournal://%HOSTGROUP::data02%:8485;%HOSTGROUP::data03%:8485;%HOSTGROUP::data04%:8485/misdev",
+                    "dfs.nameservices": "misdev",
+                    "dfs.datanode.data.dir": "/hadoop/hdfs/data/00",
+                    "dfs.journalnode.edits.dir": "/hadoop/hdfs/journal",
+                    "dfs.namenode.checkpoint.dir": "/hadoop/hdfs/namesecondary",
+                    "dfs.namenode.name.dir": "/hadoop/hdfs/namenode/00,/hadoop/hdfs/namenode/01"
+                }
+            }
+        },
+        {
+            "hadoop-env": {
+                "properties": {
+                    "hdfs_log_dir_prefix": "/hadoop/log"
+                }
+            }
+        },
+        {
+            "yarn-env": {
+                "properties": {
+                    "yarn_log_dir_prefix": "/hadoop/yarn/log/hadoop-yarn"
+                }
+            }
+        },
+        {
+            "yarn-site": {
+                "properties": {
+                    "hadoop.registry.rm.enabled": "false",
+                    "hadoop.registry.zk.quorum": "%HOSTGROUP::data01%:2181,%HOSTGROUP::data02%:2181,%HOSTGROUP::data03%:2181",
+                    "yarn.resourcemanager.zk-address": "%HOSTGROUP::data01%:2181,%HOSTGROUP::data02%:2181,%HOSTGROUP::data03%:2181",
+                    "yarn.resourcemanager.hostname.rm1": "%HOSTGROUP::master01%",
+                    "yarn.resourcemanager.hostname.rm2": "%HOSTGROUP::master02%",
+                    "yarn.log.server.url": "http://%HOSTGROUP::master02%:19888/jobhistory/logs",
+                    "yarn.resourcemanager.address": "%HOSTGROUP::master02%:8050",
+                    "yarn.resourcemanager.admin.address": "%HOSTGROUP::master02%:8141",
+                    "yarn.resourcemanager.cluster-id": "yarn-cluster",
+                    "yarn.resourcemanager.ha.automatic-failover.zk-base-path": "/yarn-leader-election",
+                    "yarn.resourcemanager.ha.enabled": "true",
+                    "yarn.resourcemanager.ha.rm-ids": "rm1,rm2",
+                    "yarn.resourcemanager.hostname": "%HOSTGROUP::master02%",
+                    "yarn.resourcemanager.recovery.enabled": "true",
+                    "yarn.resourcemanager.resource-tracker.address": "%HOSTGROUP::master02%:8025",
+                    "yarn.resourcemanager.scheduler.address": "%HOSTGROUP::master02%:8030",
+                    "yarn.resourcemanager.store.class": "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore",
+                    "yarn.resourcemanager.webapp.address": "%HOSTGROUP::master02%:8088",
+                    "yarn.resourcemanager.webapp.https.address": "%HOSTGROUP::master02%:8090",
+                    "yarn.timeline-service.address": "%HOSTGROUP::master02%:10200",
+                    "yarn.timeline-service.webapp.address": "%HOSTGROUP::master02%:8188",
+                    "yarn.timeline-service.webapp.https.address": "%HOSTGROUP::master02%:8190",
+                    "yarn.nodemanager.local-dirs": "/hadoop/yarn/local",
+                    "yarn.nodemanager.log-dirs": "/hadoop/yarn/log",
+                    "yarn.timeline-service.leveldb-state-store.path": "/hadoop/yarn/timeline",
+                    "yarn.timeline-service.leveldb-timeline-store.path": "/hadoop/yarn/timeline"
+                }
+            }
+        },
+        {
+            "mapred-site": {
+                "properties": {
+                    "mapreduce.jobhistory.recovery.store.leveldb.path": "/hadoop/mapreduce/jhs"
+                }
+            }
+        },
+        {
+            "zoo.cfg": {
+                "properties": {
+                    "dataDir": "/hadoop/zookeeper"
+                }
+            }
+        },
+        {
+            "ams-env": {
+                "properties": {
+                    "metrics_collector_log_dir": "/hadoop/metrics/log/ambari-metrics-collector",
+                    "metrics_collector_pid_dir": "/hadoop/metrics/run/ambari-metrics-collector",
+                    "metrics_monitor_log_dir": "/hadoop/metrics/log/ambari-metrics-monitor",
+                    "metrics_monitor_pid_dir": "/hadoop/metrics/run/ambari-metrics-monitor"
+                }
+            }
+        },
+        {
+            "ams-grafana-env": {
+                "properties": {
+                    "metrics_grafana_data_dir": "/hadoop/metrics/lib/ambari-metrics-grafana",
+                    "metrics_grafana_log_dir": "/hadoop/metrics/log/ambari-metrics-grafana",
+                    "metrics_grafana_pid_dir": "/hadoop/metrics/run/ambari-metrics-grafana"
+                }
+            }
+        },
+        {
+            "ams-hbase-env": {
+                "properties": {
+                    "hbase_log_dir": "/hadoop/metrics/log/ambari-metrics-collector",
+                    "hbase_pid_dir": "/hadoop/metrics/run/ambari-metrics-collector/"
+                }
+            }
+        },
+        {
+            "infra-solr-client-log4j": {
+                "properties": {
+                    "infra_solr_client_log_dir": "/hadoop/ambari_infra_solr/var/log/ambari-infra-solr-client"
+                }
+            }
+        },
+        {
+            "infra-solr-env": {
+                "properties": {
+                    "infra_solr_datadir": "/hadoop/ambari_infra_solr/data",
+                    "infra_solr_log_dir": "/hadoop/ambari_infra_solr/var/log/ambari-infra-solr",
+                    "infra_solr_pid_dir": "/hadoop/ambari_infra_solr/var/run/ambari-infra-solr"
+                }
+            }
+        }
+    ],
+    "host_groups": [
+        {
+            "name": "ambari",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "master01",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "METRICS_COLLECTOR"
+                },
+                {
+                    "name": "NAMENODE"
+                },
+                {
+                    "name": "ZKFC"
+                },
+                {
+                    "name": "RESOURCEMANAGER"
+                },
+                {
+                    "name": "HISTORYSERVER"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                },
+                {
+                    "name": "INFRA_SOLR_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "master02",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "NAMENODE"
+                },
+                {
+                    "name": "ZKFC"
+                },
+                {
+                    "name": "RESOURCEMANAGER"
+                },
+                {
+                    "name": "APP_TIMELINE_SERVER"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                },
+                {
+                    "name": "INFRA_SOLR_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data01",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                },
+                {
+                    "name": "INFRA_SOLR"
+                },
+                {
+                    "name": "INFRA_SOLR_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data02",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "JOURNALNODE"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                },
+                {
+                    "name": "INFRA_SOLR"
+                },
+                {
+                    "name": "INFRA_SOLR_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data03",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "JOURNALNODE"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data04",
+            "components": [
+                {
+                    "name": "METRICS_MONITOR"
+                },
+                {
+                    "name": "KERBEROS_CLIENT"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "JOURNALNODE"
+                },
+                {
+                    "name": "METRICS_GRAFANA"
+                }
+            ],
+            "cardinality": 1
+        }
+    ],
+    "Blueprints": {
+        "blueprint_name": "ha-hdfs-yarn-kerberos",
+        "stack_name": "HDP",
+        "stack_version": "2.6"
+    }
+}

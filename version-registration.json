@@ -1,7 +1,7 @@
 {
   "resources" : [
     {
-      "href" : "http://lcsgepalsv058.lcs.priv/api/v1/version_definitions/1",
+      "href" : "http://ambari.server.fqdn/api/v1/version_definitions/1",
       "VersionDefinition" : {
         "id" : 1,
         "stack_name" : "HDP",

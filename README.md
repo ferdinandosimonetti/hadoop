@@ -1,2 +1,2 @@
 # hadoop
-Hadoop resources - JSON for blueprints and scripts
+Hadoop resources - JSON for blueprints, config files, scripts

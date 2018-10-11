@@ -1,0 +1,9 @@
+{
+      "tag": "INITIAL",
+      "type": "hivemetastore-site",
+      "properties": {
+        "hive.metastore.metrics.enabled": "true",
+        "hive.service.metrics.hadoop2.component": "hivemetastore",
+        "hive.service.metrics.reporter": "HADOOP2"
+      }
+}

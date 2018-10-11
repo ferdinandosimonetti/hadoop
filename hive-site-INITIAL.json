@@ -1,0 +1,24 @@
+{
+	"type": "hive-site",
+	"tag": "INITIAL",
+	"properties": {
+		"ambari.hive.db.schema.name": "hive",
+		"hive.cluster.delegation.token.store.zookeeper.connectString": "lcsgepalsv066.lcs.priv:2181,lcsgepalsv067.lcs.priv:2181,lcsgepalsv068.lcs.priv:2181",
+        	"hive.cluster.delegation.token.store.zookeeper.znode": "/hive/cluster/delegation",
+        	"hive.server2.logging.operation.enabled": "true",
+        	"hive.server2.logging.operation.log.location": "/tmp/hive/operation_logs",
+        	"hive.server2.zookeeper.namespace": "hiveserver2",
+		"hive.server2.transport.mode": "binary",
+		"hive.metastore.uris": "thrift://lcsgepalsv065.lcs.priv:9083",
+        	"hive.stats.dbclass": "fs",
+        	"hive.tez.log.level": "INFO",
+        	"hive.zookeeper.client.port": "2181",
+        	"hive.zookeeper.namespace": "hive_zookeeper_namespace",
+        	"hive.zookeeper.quorum": "lcsgepalsv066.lcs.priv:2181,lcsgepalsv067.lcs.priv:2181,lcsgepalsv068.lcs.priv:2181",
+		"hive.metastore.warehouse.dir": "/apps/hive/warehouse",
+        	"javax.jdo.option.ConnectionDriverName": "org.postgresql.Driver",
+        	"javax.jdo.option.ConnectionPassword": "Temporanea.1234",
+        	"javax.jdo.option.ConnectionURL": "jdbc:postgresql://lcsgepalsv059.lcs.priv:5432/hive?createDatabaseIfNotExist",
+        	"javax.jdo.option.ConnectionUserName": "hive"
+	}
+}

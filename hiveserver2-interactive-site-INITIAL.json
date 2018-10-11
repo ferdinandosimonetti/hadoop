@@ -1,0 +1,10 @@
+{
+      "tag": "INITIAL",
+      "type": "hiveserver2-interactive-site",
+      "properties": {
+        "hive.async.log.enabled": "false",
+        "hive.metastore.metrics.enabled": "true",
+        "hive.service.metrics.hadoop2.component": "hiveserver2",
+        "hive.service.metrics.reporter": "HADOOP2"
+      }
+}

@@ -1,0 +1,63 @@
+{
+  "blueprint": "ha-hdfs-yarn",
+  "repository_version_id": 1,
+  "default_password": "admin",
+  "host_groups": [
+    {
+      "name": "ambari",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv058.lcs.priv"
+        }
+      ]
+    },
+    {
+      "name": "master01",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv064.lcs.priv"
+        }
+      ]
+    },
+    {
+      "name": "master02",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv065.lcs.priv"
+        }
+      ]
+    },
+    {
+      "name": "data01",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv066.lcs.priv"
+        }
+      ]
+    },
+    {
+      "name": "data02",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv067.lcs.priv"
+        }
+      ]
+    },
+    {
+      "name": "data03",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv068.lcs.priv"
+        }
+      ]
+    },
+    {
+      "name": "data04",
+      "hosts": [
+        {
+          "fqdn": "lcsgepalsv069.lcs.priv"
+        }
+      ]
+    }
+  ]
+}

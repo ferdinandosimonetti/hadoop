@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # Ambari host
 export AMBARISRVHOST="lcsgepalsv058.lcs.priv"
 # Hive server host

@@ -1,0 +1,74 @@
+{
+  "blueprint": "home",
+  "repository_version_id": 1,
+  "default_password": "admin",
+  "credentials": [
+    {
+      "alias": "kdc.admin.credential",
+      "principal": "root/admin@HADOOP.PRIV",
+      "key": "Temporanea.1234",
+      "type": "TEMPORARY"
+    }
+  ],
+  "security": {
+    "type": "KERBEROS"
+  },
+  "host_groups": [
+    {
+      "name": "ambari",
+      "hosts": [
+        {
+          "fqdn": "l01.lan"
+        }
+      ]
+    },
+    {
+      "name": "master01",
+      "hosts": [
+        {
+          "fqdn": "l02.lan"
+        }
+      ]
+    },
+    {
+      "name": "master02",
+      "hosts": [
+        {
+          "fqdn": "l03.lan"
+        }
+      ]
+    },
+    {
+      "name": "master03",
+      "hosts": [
+        {
+          "fqdn": "l04.lan"
+        }
+      ]
+    },
+    {
+      "name": "data01",
+      "hosts": [
+        {
+          "fqdn": "l05.lan"
+        }
+      ]
+    },
+    {
+      "name": "data02",
+      "hosts": [
+        {
+          "fqdn": "l06.lan"
+        }
+      ]
+    },
+    {
+      "name": "data03",
+      "hosts": [
+        {
+          "fqdn": "l07.lan"
+        }
+      ]
+    }
+  ]
+}

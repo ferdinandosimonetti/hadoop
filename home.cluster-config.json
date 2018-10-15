@@ -168,6 +168,21 @@
                     "name": "METRICS_MONITOR"
                 },
                 {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "INFRA_SOLR_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                },
+                {
                     "name": "KERBEROS_CLIENT"
                 }
             ],
@@ -195,15 +210,6 @@
                     "name": "KERBEROS_CLIENT"
                 },
                 {
-                    "name": "HDFS_CLIENT"
-                },
-                {
-                    "name": "MAPREDUCE2_CLIENT"
-                },
-                {
-                    "name": "YARN_CLIENT"
-                },
-                {
                     "name": "ZOOKEEPER_CLIENT"
                 },
                 {
@@ -211,9 +217,6 @@
                 },
                 {
                     "name": "JOURNALNODE"
-                },
-                {
-                    "name": "INFRA_SOLR_CLIENT"
                 }
             ],
             "cardinality": 1
@@ -240,15 +243,6 @@
                     "name": "KERBEROS_CLIENT"
                 },
                 {
-                    "name": "HDFS_CLIENT"
-                },
-                {
-                    "name": "MAPREDUCE2_CLIENT"
-                },
-                {
-                    "name": "YARN_CLIENT"
-                },
-                {
                     "name": "ZOOKEEPER_CLIENT"
                 },
                 {
@@ -256,9 +250,6 @@
                 },
                 {
                     "name": "JOURNALNODE"
-                },
-                {
-                    "name": "INFRA_SOLR_CLIENT"
                 }
             ],
             "cardinality": 1
@@ -279,15 +270,6 @@
                     "name": "KERBEROS_CLIENT"
                 },
                 {
-                    "name": "HDFS_CLIENT"
-                },
-                {
-                    "name": "MAPREDUCE2_CLIENT"
-                },
-                {
-                    "name": "YARN_CLIENT"
-                },
-                {
                     "name": "ZOOKEEPER_CLIENT"
                 },
                 {
@@ -301,9 +283,6 @@
                 },
                 {
                     "name": "INFRA_SOLR"
-                },
-                {
-                    "name": "INFRA_SOLR_CLIENT"
                 }
             ],
             "cardinality": 1
@@ -322,12 +301,6 @@
                 },
                 {
                     "name": "NODEMANAGER"
-                },
-                {
-                    "name": "HDFS_CLIENT"
-                },
-                {
-                    "name": "INFRA_SOLR_CLIENT"
                 }
             ],
             "cardinality": 1
@@ -346,9 +319,6 @@
                 },
                 {
                     "name": "NODEMANAGER"
-                },
-                {
-                    "name": "HDFS_CLIENT"
                 }
             ],
             "cardinality": 1
@@ -367,9 +337,6 @@
                 },
                 {
                     "name": "NODEMANAGER"
-                },
-                {
-                    "name": "HDFS_CLIENT"
                 }
             ],
             "cardinality": 1

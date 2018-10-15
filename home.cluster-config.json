@@ -306,7 +306,7 @@
             "cardinality": 1
         },
         {
-            "name": "data03",
+            "name": "data02",
             "components": [
                 {
                     "name": "METRICS_MONITOR"
@@ -324,7 +324,7 @@
             "cardinality": 1
         },
         {
-            "name": "data04",
+            "name": "data03",
             "components": [
                 {
                     "name": "METRICS_MONITOR"
@@ -343,7 +343,7 @@
         }
     ],
     "Blueprints": {
-        "blueprint_name": "home",
+        "blueprint_name": "home2",
         "stack_name": "HDP",
         "stack_version": "2.6"
     }

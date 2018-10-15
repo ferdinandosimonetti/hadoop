@@ -3,7 +3,7 @@
 export AMBARISRVHOST="l01.lan"
 # Ambari cluster
 export CLUSTERNAME="home"
-export BPNAME="home"
+export BPNAME="home2"
 export CURLCMD="curl -k -u admin:admin -i"
 export BASEURL="http://${AMBARISRVHOST}:8080/api/v1"
 export BASECLU="${BASEURL}/clusters/${CLUSTERNAME}"

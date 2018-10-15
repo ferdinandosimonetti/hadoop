@@ -11,7 +11,7 @@ export BASEVDF="${BASEURL}/version_definitions"
 export BASEBP="${BASEURL}/blueprints"
 
 # add Hadoop version local repository to Ambari
-${CURLCMD} -H "X-Requested-By:ambari" -X POST ${BASEVDF} -d @${BPNAME}.version-definitions.json
+#${CURLCMD} -H "X-Requested-By:ambari" -X POST ${BASEVDF} -d @${BPNAME}.version-definitions.json
 # add blueprint information to Ambari
 ${CURLCMD} -H "X-Requested-By:ambari" -X POST ${BASEBP}/${BPNAME} -d @${BPNAME}.cluster-config.json
 # apply blueprint to host topology

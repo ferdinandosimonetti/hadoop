@@ -50,7 +50,7 @@
       "name": "data01",
       "hosts": [
         {
-          "fqdn": "l05.lan"
+          "fqdn": "l02.lan"
         }
       ]
     },
@@ -58,7 +58,7 @@
       "name": "data02",
       "hosts": [
         {
-          "fqdn": "l06.lan"
+          "fqdn": "l03.lan"
         }
       ]
     },
@@ -66,7 +66,7 @@
       "name": "data03",
       "hosts": [
         {
-          "fqdn": "l07.lan"
+          "fqdn": "l04.lan"
         }
       ]
     }

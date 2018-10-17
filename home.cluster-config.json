@@ -264,9 +264,6 @@
                     "name": "METRICS_COLLECTOR"
                 },
                 {
-                    "name": "ZKFC"
-                },
-                {
                     "name": "KERBEROS_CLIENT"
                 },
                 {

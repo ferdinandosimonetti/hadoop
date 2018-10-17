@@ -343,7 +343,7 @@
         }
     ],
     "Blueprints": {
-        "blueprint_name": "home2",
+        "blueprint_name": "home",
         "stack_name": "HDP",
         "stack_version": "2.6"
     }

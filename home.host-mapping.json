@@ -1,7 +1,7 @@
 {
   "blueprint": "home",
   "repository_version_id": 1,
-  "default_password": "admin",
+  "default_password": "Temporanea.1234",
   "credentials": [
     {
       "alias": "kdc.admin.credential",

@@ -1,0 +1,383 @@
+{
+    "configurations": [
+        {
+            "mapred-site": {
+                "properties_attributes": {},
+                "properties": {
+                    "mapreduce.jobhistory.address": "%HOSTGROUP::host_group_2%:10020",
+                    "mapreduce.jobhistory.webapp.address": "%HOSTGROUP::host_group_2%:19888"
+                }
+            }
+        },
+        {
+            "admin-properties": {
+                "properties_attributes": {},
+                "properties": {
+                    "DB_FLAVOR": "MYSQL",
+                    "SQL_CONNECTOR_JAR": "/usr/share/java/mysql-connector-java.jar",
+                    "db_host": "secure-ranger-a.com",
+                    "audit_db_password": "rangerlogger",
+                    "db_root_user": "root",
+                    "db_root_password": "ranger",
+                    "db_password": "rangeradmin",
+                    "policymgr_external_url": "http://secure-ranger-c.com:6080"
+                }
+            }
+        },
+        {
+            "ranger-admin-site": {
+                "properties_attributes": {},
+                "properties": {
+                    "ranger.audit.source.type": "solr",
+                    "ranger.jpa.jdbc.driver": "com.mysql.jdbc.Driver",
+                    "ranger.jpa.jdbc.url": "jdbc:mysql://secure-ranger-c.com/ranger",
+                    "ranger.audit.solr.zookeepers": "secure-ranger-a.com:2181,secure-ranger-b.com:2181,secure-ranger-c.com:2181/infra-solr"
+                }
+            }
+        },
+        {
+            "kms-site": {
+                "properties_attributes": {},
+                "properties": {
+                    "hadoop.kms.key.provider.uri": "dbks://http@secure-ranger-c.com:9292/kms"
+                }
+            }
+        },
+        {
+            "core-site": {
+                "properties_attributes": {
+                    "final": {
+                        "fs.defaultFS": "true"
+                    }
+                },
+                "properties": {
+                    "fs.defaultFS": "hdfs://%HOSTGROUP::host_group_1%:8020",
+                    "hadoop.security.key.provider.path": "kms://http@secure-ranger-c.com:9292/kms"
+                }
+            }
+        },
+        {
+            "hdfs-site": {
+                "properties_attributes": {
+                    "final": {
+                        "dfs.namenode.http-address": "true",
+                        "dfs.support.append": "true"
+                    }
+                },
+                "properties": {
+                    "dfs.encryption.key.provider.uri": "kms://http@secure-ranger-c.com:9292/kms"
+                }
+            }
+        },
+        {
+            "kms-properties": {
+                "properties_attributes": {},
+                "properties": {
+                    "DB_FLAVOR": "MYSQL",
+                    "SQL_CONNECTOR_JAR": "/usr/share/java/mysql-connector-java.jar",
+                    "KMS_MASTER_KEY_PASSWD": "Str0ngPassw0rd",
+                    "db_host": "secure-ranger-a.com",
+                    "db_root_user": "root",
+                    "db_root_password": "ranger",
+                    "db_password": "rangerkms"
+                }
+            }
+        },
+        {
+            "dbks-site": {
+                "properties_attributes": {},
+                "properties": {
+                    "ranger.ks.jpa.jdbc.url": "jdbc:mysql://secure-ranger-a.com:3306/rangerkms"
+                }
+            }
+        },
+        {
+            "hadoop-env": {
+                "properties_attributes": {},
+                "properties": {
+                    "keyserver_host": "secure-ranger-c.com",
+                    "keyserver_port": "9292"
+                }
+            }
+        },
+        {
+            "knox-env": {
+                "properties_attributes": {},
+                "properties": {
+                    "knox_master_secret": "knoxpwd"
+                }
+            }
+        },
+        {
+            "hive-site": {
+                "properties_attributes": {},
+                "properties": {
+                    "javax.jdo.option.ConnectionPassword": "hive"
+                }
+            }
+        },
+        {
+            "ranger-env": {
+                "properties_attributes": {},
+                "properties": {
+                    "ranger_user": "ranger",
+                    "ranger-hdfs-plugin-enabled": "Yes",
+                    "ranger-hbase-plugin-enabled": "Yes",
+                    "ranger-hive-plugin-enabled": "Yes",
+                    "ranger-knox-plugin-enabled": "Yes",
+                    "ranger-yarn-plugin-enabled": "Yes",
+                    "ranger-atlas-plugin-enabled": "Yes",
+                    "ranger-storm-plugin-enabled": "Yes",
+                    "ranger-kafka-plugin-enabled": "Yes",
+                    "ranger_group": "ranger",
+                    "ranger_admin_username": "amb_ranger_admin",
+                    "ranger_admin_password": "ambariadmin1234",
+                    "xasecure.audit.destination.db": "false",
+                    "xasecure.audit.destination.solr": "true",
+                    "xasecure.audit.destination.hdfs": "true",
+                    "is_solrCloud_enabled": "true"
+                }
+            }
+        },
+        {
+            "kerberos-env": {
+                "properties": {
+                    "realm": "EXAMPLE.COM",
+                    "kdc_type": "mit-kdc",
+                    "kdc_hosts": "secure-ranger-c.com",
+                    "admin_server_host": "secure-ranger-c.com",
+                    "encryption_types": "aes des3-cbc-sha1 rc4 des-cbc-md5",
+                    "service_check_principal_name": "cl1-tBpTdnmVAZ"
+                }
+            }
+        },
+        {
+            "krb5-conf": {
+                "properties": {
+                    "domains": "openstacklocal,.openstacklocal",
+                    "manage_krb5_conf": "true"
+                }
+            }
+        }
+    ],
+    "host_groups": [
+        {
+            "components": [
+                {
+                    "name": "HCAT"
+                },
+                {
+                    "name": "NAMENODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "HBASE_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                },
+                {
+                    "name": "TEZ_CLIENT"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "APP_TIMELINE_SERVER"
+                },
+                {
+                    "name": "RESOURCEMANAGER"
+                },
+                {
+                    "name": "HBASE_MASTER"
+                },
+                {
+                    "name": "KNOX_GATEWAY"
+                },
+                {
+                    "name": "PHOENIX_QUERY_SERVER"
+                },
+                {
+                    "name": "HIVE_CLIENT"
+                },
+                {
+                    "name": "INFRA_SOLR"
+                },
+                {
+                    "name": "INFRA_SOLR_CLIENT"
+                },
+                {
+                    "name": "KAFKA_BROKER"
+                },
+                {
+                    "name": "DRPC_SERVER"
+                },
+                {
+                    "name": "STORM_UI_SERVER"
+                },
+                {
+                    "name": "NIMBUS"
+                },
+                {
+                    "name": "SUPERVISOR"
+                }
+            ],
+            "configurations": [],
+            "name": "host_group_1",
+            "cardinality": "1"
+        },
+        {
+            "components": [
+                {
+                    "name": "PIG"
+                },
+                {
+                    "name": "SECONDARY_NAMENODE"
+                },
+                {
+                    "name": "HISTORYSERVER"
+                },
+                {
+                    "name": "HBASE_REGIONSERVER"
+                },
+                {
+                    "name": "HBASE_CLIENT"
+                },
+                {
+                    "name": "HIVE_SERVER"
+                },
+                {
+                    "name": "HCAT"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "TEZ_CLIENT"
+                },
+                {
+                    "name": "PHOENIX_QUERY_SERVER"
+                },
+                {
+                    "name": "HIVE_METASTORE"
+                },
+                {
+                    "name": "HIVE_CLIENT"
+                },
+                {
+                    "name": "MYSQL_SERVER"
+                },
+                {
+                    "name": "WEBHCAT_SERVER"
+                },
+                {
+                    "name": "SUPERVISOR"
+                }
+            ],
+            "configurations": [],
+            "name": "host_group_2",
+            "cardinality": "1"
+        },
+        {
+            "components": [
+                {
+                    "name": "PIG"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "HBASE_CLIENT"
+                },
+                {
+                    "name": "HIVE_CLIENT"
+                },
+                {
+                    "name": "HCAT"
+                },
+                {
+                    "name": "ATLAS_SERVER"
+                },
+                {
+                    "name": "ATLAS_CLIENT"
+                },
+                {
+                    "name": "RANGER_ADMIN"
+                },
+                {
+                    "name": "RANGER_USERSYNC"
+                },
+                {
+                    "name": "RANGER_KMS_SERVER"
+                },
+                {
+                    "name": "PHOENIX_QUERY_SERVER"
+                },
+                {
+                    "name": "AMBARI_SERVER"
+                },
+                {
+                    "name": "SUPERVISOR"
+                }
+            ],
+            "configurations": [],
+            "name": "host_group_3",
+            "cardinality": "1"
+        }
+    ],
+    "Blueprints": {
+        "stack_name": "HDP",
+        "stack_version": "2.6",
+        "blueprint_name": "myblueprint"
+    }
+}

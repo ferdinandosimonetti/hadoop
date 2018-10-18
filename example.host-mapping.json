@@ -1,0 +1,82 @@
+{
+    "credentials": [
+        {
+            "alias": "kdc.admin.credential",
+            "principal": "admin/admin@EXAMPLE.COM",
+            "key": "admin",
+            "type": "TEMPORARY"
+        }
+    ],
+    "security": {
+        "type": "KERBEROS",
+        "kerberos_descriptor": {
+            "identities": [
+                {
+                    "name": "smokeuser",
+                    "principal": {
+                        "value": "${cluster-env/smokeuser}@${realm}",
+                        "type": "user"
+                    }
+                }
+            ],
+            "services": [
+                {
+                    "components": [
+                        {
+                            "name": "NAMENODE",
+                            "identities": [
+                                {
+                                    "name": "hdfs",
+                                    "principal": {
+                                        "value": "${hadoop-env/hdfs_user}@${realm}",
+                                        "type": "user"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "name": "HDFS",
+                    "identities": []
+                }
+            ]
+        }
+    },
+    "blueprint": "myblueprint",
+    "default_password": "admin",
+    "config_recommendation_strategy": "ALWAYS_APPLY_DONT_OVERRIDE_CUSTOM_VALUES",
+    "host_groups": [
+        {
+            "hosts": [
+                {
+                    "fqdn": "secure-ranger-a.com",
+                    "ip": "127.0.0.1"
+                }
+            ],
+            "name": "host_group_1",
+            "configurations": []
+        },
+        {
+            "hosts": [
+                {
+                    "fqdn": "secure-ranger-b.com",
+                    "ip": "127.0.0.2"
+                }
+            ],
+            "name": "host_group_2",
+            "configurations": []
+        },
+        {
+            "hosts": [
+                {
+                    "fqdn": "secure-ranger-c.com",
+                    "ip": "127.0.0.3"
+                }
+            ],
+            "name": "host_group_3",
+            "configurations": []
+        }
+    ],
+    "Clusters": {
+        "cluster_name": "test_Cluster01"
+    }
+}

@@ -1,0 +1,257 @@
+{
+    "configurations": [
+        {
+            "core-site": {
+                "properties": {
+                    "fs.defaultFS": "hdfs://misdev",
+                    "ha.zookeeper.quorum": "%HOSTGROUP::data01%:2181,%HOSTGROUP::data02%:2181,%HOSTGROUP::data03%:2181",
+                    "hadoop.proxyuser.root.groups": "*",
+                    "hadoop.proxyuser.root.hosts": "*",
+                    "hadoop.proxyuser.hcat.groups": "*",
+                    "hadoop.proxyuser.hcat.hosts": "*"
+                }
+            }
+        },
+        {
+            "hdfs-site": {
+                "properties": {
+                    "dfs.client.failover.proxy.provider.misdev": "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider",
+                    "dfs.ha.automatic-failover.enabled": "true",
+                    "dfs.ha.fencing.methods": "shell(/bin/true)",
+                    "dfs.ha.namenodes.misdev": "nn1,nn2",
+                    "dfs.namenode.http-address": "%HOSTGROUP::master01%:50070",
+                    "dfs.namenode.http-address.misdev.nn1": "%HOSTGROUP::master01%:50070",
+                    "dfs.namenode.http-address.misdev.nn2": "%HOSTGROUP::master02%:50070",
+                    "dfs.namenode.https-address": "%HOSTGROUP::master01%:50470",
+                    "dfs.namenode.https-address.misdev.nn1": "%HOSTGROUP::master01%:50470",
+                    "dfs.namenode.https-address.misdev.nn2": "%HOSTGROUP::master02%:50470",
+                    "dfs.namenode.rpc-address.misdev.nn1": "%HOSTGROUP::master01%:8020",
+                    "dfs.namenode.rpc-address.misdev.nn2": "%HOSTGROUP::master02%:8020",
+                    "dfs.namenode.shared.edits.dir": "qjournal://%HOSTGROUP::data02%:8485;%HOSTGROUP::data03%:8485;%HOSTGROUP::data04%:8485/misdev",
+                    "dfs.nameservices": "misdev",
+                    "dfs.datanode.data.dir": "/hadoop/hdfs/data/00",
+                    "dfs.journalnode.edits.dir": "/hadoop/hdfs/journal",
+                    "dfs.namenode.checkpoint.dir": "/hadoop/hdfs/namesecondary",
+                    "dfs.namenode.name.dir": "/hadoop/hdfs/namenode/00,/hadoop/hdfs/namenode/01"
+                }
+            }
+        },
+        {
+            "hadoop-env": {
+                "properties": {
+                    "hdfs_log_dir_prefix": "/hadoop/log"
+                }
+            }
+        },
+        {
+            "yarn-env": {
+                "properties": {
+                    "yarn_log_dir_prefix": "/hadoop/yarn/log/hadoop-yarn"
+                }
+            }
+        },
+        {
+            "yarn-site": {
+                "properties": {
+                    "hadoop.registry.rm.enabled": "false",
+                    "hadoop.registry.zk.quorum": "%HOSTGROUP::data01%:2181,%HOSTGROUP::data02%:2181,%HOSTGROUP::data03%:2181",
+                    "yarn.resourcemanager.zk-address": "%HOSTGROUP::data01%:2181,%HOSTGROUP::data02%:2181,%HOSTGROUP::data03%:2181",
+                    "yarn.resourcemanager.hostname.rm1": "%HOSTGROUP::master01%",
+                    "yarn.resourcemanager.hostname.rm2": "%HOSTGROUP::master02%",
+                    "yarn.log.server.url": "http://%HOSTGROUP::master02%:19888/jobhistory/logs",
+                    "yarn.resourcemanager.address": "%HOSTGROUP::master02%:8050",
+                    "yarn.resourcemanager.admin.address": "%HOSTGROUP::master02%:8141",
+                    "yarn.resourcemanager.cluster-id": "yarn-cluster",
+                    "yarn.resourcemanager.ha.automatic-failover.zk-base-path": "/yarn-leader-election",
+                    "yarn.resourcemanager.ha.enabled": "true",
+                    "yarn.resourcemanager.ha.rm-ids": "rm1,rm2",
+                    "yarn.resourcemanager.hostname": "%HOSTGROUP::master02%",
+                    "yarn.resourcemanager.recovery.enabled": "true",
+                    "yarn.resourcemanager.resource-tracker.address": "%HOSTGROUP::master02%:8025",
+                    "yarn.resourcemanager.scheduler.address": "%HOSTGROUP::master02%:8030",
+                    "yarn.resourcemanager.store.class": "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore",
+                    "yarn.resourcemanager.webapp.address": "%HOSTGROUP::master02%:8088",
+                    "yarn.resourcemanager.webapp.https.address": "%HOSTGROUP::master02%:8090",
+                    "yarn.timeline-service.address": "%HOSTGROUP::master02%:10200",
+                    "yarn.timeline-service.webapp.address": "%HOSTGROUP::master02%:8188",
+                    "yarn.timeline-service.webapp.https.address": "%HOSTGROUP::master02%:8190",
+                    "yarn.nodemanager.local-dirs": "/hadoop/yarn/local",
+                    "yarn.nodemanager.log-dirs": "/hadoop/yarn/log",
+                    "yarn.timeline-service.leveldb-state-store.path": "/hadoop/yarn/timeline",
+                    "yarn.timeline-service.leveldb-timeline-store.path": "/hadoop/yarn/timeline"
+                }
+            }
+        },
+        {
+            "mapred-site": {
+                "properties": {
+                    "mapreduce.jobhistory.recovery.store.leveldb.path": "/hadoop/mapreduce/jhs"
+                }
+            }
+        },
+        {
+            "zoo.cfg": {
+                "properties": {
+                    "dataDir": "/hadoop/zookeeper"
+                }
+            }
+        }
+    ],
+    "host_groups": [
+        {
+            "name": "ambari",
+            "components": [
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "master01",
+            "components": [
+                {
+                    "name": "NAMENODE"
+                },
+                {
+                    "name": "ZKFC"
+                },
+                {
+                    "name": "RESOURCEMANAGER"
+                },
+                {
+                    "name": "HISTORYSERVER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "master02",
+            "components": [
+                {
+                    "name": "NAMENODE"
+                },
+                {
+                    "name": "ZKFC"
+                },
+                {
+                    "name": "RESOURCEMANAGER"
+                },
+                {
+                    "name": "APP_TIMELINE_SERVER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "MAPREDUCE2_CLIENT"
+                },
+                {
+                    "name": "YARN_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_CLIENT"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data01",
+            "components": [
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data02",
+            "components": [
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "JOURNALNODE"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data03",
+            "components": [
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "JOURNALNODE"
+                },
+                {
+                    "name": "ZOOKEEPER_SERVER"
+                }
+            ],
+            "cardinality": 1
+        },
+        {
+            "name": "data04",
+            "components": [
+                {
+                    "name": "DATANODE"
+                },
+                {
+                    "name": "NODEMANAGER"
+                },
+                {
+                    "name": "HDFS_CLIENT"
+                },
+                {
+                    "name": "JOURNALNODE"
+                }
+            ],
+            "cardinality": 1
+        }
+    ],
+    "Blueprints": {
+        "blueprint_name": "ha-hdfs-yarn-v2",
+        "stack_name": "HDP",
+        "stack_version": "2.6"
+    }
+}

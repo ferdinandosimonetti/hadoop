@@ -342,6 +342,7 @@
     "Blueprints": {
         "blueprint_name": "home",
         "stack_name": "HDP",
-        "stack_version": "2.6"
+        "stack_version": "2.6",
+        "config_recommendation_strategy": "ALWAYS_APPLY_DONT_OVERRIDE_CUSTOM_VALUES"
     }
 }
